@@ -1,0 +1,16 @@
+{
+  "environment": {
+    "dev": {
+      "url": "https://automationexercise.com/login",
+      "MAX_NUMBER_OF_ATTEMPTS" : 3
+    },
+    "QA": {
+      "url": "https://automationexercise.com/login",
+      "MAX_NUMBER_OF_ATTEMPTS" : 3
+    },
+    "UAT": {
+      "url": "https://automationexercise.com/login",
+      "MAX_NUMBER_OF_ATTEMPTS" : 3
+    }
+  }
+}
