@@ -23,7 +23,7 @@ jobs:
         cache: maven
 
     - name: Run Tests (Headless)
-      run: mvn clean test -Dbrowser=chrome -DisLambdaTest=true -DisHeadless=false
+      run: mvn clean test -Dbrowser=chrome -DisLambdaTest=true -DisHeadless=true
 
     - name: Upload Logs
       if: always()
