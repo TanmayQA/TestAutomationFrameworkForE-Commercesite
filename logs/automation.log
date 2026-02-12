@@ -1,0 +1,20 @@
+2026-02-12 00:38:08 [main] INFO com.ui.listeners.TestListner Test Suite Started 
+2026-02-12 00:38:39 [TestNG-test-UI Automation Test-1] INFO com.ui.listeners.TestListner loginExceltest 
+2026-02-12 00:38:39 [TestNG-test-UI Automation Test-1] INFO com.ui.listeners.TestListner Verify the valid user is able to login into the application 
+2026-02-12 00:38:39 [TestNG-test-UI Automation Test-1] INFO com.ui.listeners.TestListner loginExceltest 
+2026-02-12 00:38:39 [TestNG-test-UI Automation Test-1] INFO com.ui.listeners.TestListner [Sanity, E2E] 
+2026-02-12 00:38:39 [TestNG-test-UI Automation Test-1] INFO com.ui.pages.LoginPage Trying to performing click to go to login home page 
+2026-02-12 00:38:39 [TestNG-test-UI Automation Test-1] WARN com.ui.listeners.TestListner loginExceltest SKIPPED 
+2026-02-12 00:39:23 [TestNG-test-UI Automation Test-1] INFO com.ui.listeners.TestListner loginExceltest 
+2026-02-12 00:39:23 [TestNG-test-UI Automation Test-1] INFO com.ui.listeners.TestListner Verify the valid user is able to login into the application 
+2026-02-12 00:39:23 [TestNG-test-UI Automation Test-1] INFO com.ui.listeners.TestListner loginExceltest 
+2026-02-12 00:39:23 [TestNG-test-UI Automation Test-1] INFO com.ui.listeners.TestListner [Sanity, E2E] 
+2026-02-12 00:39:23 [TestNG-test-UI Automation Test-1] INFO com.ui.pages.LoginPage Trying to performing click to go to login home page 
+2026-02-12 00:39:23 [TestNG-test-UI Automation Test-1] WARN com.ui.listeners.TestListner loginExceltest SKIPPED 
+2026-02-12 00:39:36 [TestNG-test-UI Automation Test-1] INFO com.ui.listeners.TestListner loginExceltest 
+2026-02-12 00:39:36 [TestNG-test-UI Automation Test-1] INFO com.ui.listeners.TestListner Verify the valid user is able to login into the application 
+2026-02-12 00:39:36 [TestNG-test-UI Automation Test-1] INFO com.ui.listeners.TestListner loginExceltest 
+2026-02-12 00:39:36 [TestNG-test-UI Automation Test-1] INFO com.ui.listeners.TestListner [Sanity, E2E] 
+2026-02-12 00:39:36 [TestNG-test-UI Automation Test-1] INFO com.ui.pages.LoginPage Trying to performing click to go to login home page 
+2026-02-12 00:39:40 [TestNG-test-UI Automation Test-1] INFO com.ui.listeners.TestListner loginExceltest PASSED 
+2026-02-12 00:39:41 [main] INFO com.ui.listeners.TestListner Test Suite Comdletes 
