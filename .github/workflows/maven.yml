@@ -1,5 +1,8 @@
 name: Test Automation Workflow
 
+permissions:
+  contents: write
+
 on:
   push:
     branches: [ "main" ]
@@ -22,22 +25,27 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    - name: Run Tests (Headless)
+    # Run tests (Headless for GitHub runners)
+    - name: Run Tests
       run: mvn clean test -Dbrowser=chrome -DisLambdaTest=true -DisHeadless=true
 
+    # Upload logs
     - name: Upload Logs
       if: always()
       uses: actions/upload-artifact@v4
       with:
         name: logs
         path: logs/**
-    - name: Upload Screenshot as Artifacts
+
+    # Upload screenshots
+    - name: Upload Screenshots
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: screenshot
-        path: screenshots/
+        name: screenshots
+        path: screenshots/**
 
+    # Upload report
     - name: Upload Report
       if: always()
       uses: actions/upload-artifact@v4
@@ -45,24 +53,22 @@ jobs:
         name: report
         path: "**/report.html"
 
-    - name: Done
-      run: echo "Test Execution Completed"
-
-    - name: copy Report tp gh-pages Folder
+    - name: Prepare gh-pages folder
       if: always()
+      run: |
+        mkdir -p public/extent-reports
+        cp report.html public/extent-reports/
+        cp -R screenshots public/extent-reports/
+        ls -R public
 
-      run: | 
-       mkdir -p public/extent-reports
-       cp -R report.html public/extent-reports/
-       cp -R screenshots/public/extent-reports/screenshots/
-       ls -l
-
+    # Deploy to GitHub Pages (NO PAT REQUIRED)
     - name: Deploy
       if: always()
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-         folder: public/extent-reports/
-         token: ${{secrets.PAT12  }}
-         clean: true
-       
-      
+        folder: public/extent-reports
+        token: ${{ secrets.GITHUB_TOKEN }}
+        clean: true
+
+    - name: Done
+      run: echo "Test Execution Completed"
