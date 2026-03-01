@@ -21,7 +21,6 @@ public class TestBase {
     Logger logger = LoggerUtility.getLogger(this.getClass());
     private boolean isLembdaTest;
 
-
     @Parameters({"browser", "isLembdaTest", "isHeadless"})
     @BeforeMethod(description = "Load the login page of the website")
     public void setup(

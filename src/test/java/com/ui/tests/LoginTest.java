@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 @Listeners(TestListner.class)
 public class LoginTest extends TestBase {
     Logger logger = LoggerUtility.getLogger(this.getClass());
-
+//
 //    @Test(description = "Verify the valid user is able to login into the application", groups = {"E2E", "Sanity"},
 //            dataProviderClass = com.ui.dataproviders.LoginDataProvider.class,
 //            dataProvider = "LoginTestDataProvider")
@@ -21,20 +21,20 @@ public class LoginTest extends TestBase {
 //        assertEquals(loginPage.doLoginWith(user.getEmailAddress(), user.getPassword()).getUserName(), "Tanmay QA");
 //
 //    }
-//
-//    @Test(description = "Verify the valid user is able to login into the application", groups = {"E2E", "Sanity"},
-//            dataProviderClass = com.ui.dataproviders.LoginDataProvider.class,
-//            dataProvider = "LoginTestCSVDataProvider")
-//    public void loginCSVtest(user user) {
-//        assertEquals(loginPage.doLoginWith(user.getEmailAddress(), user.getPassword()).getUserName(), "Tanmay QA");
-//    }
-//
+
     @Test(description = "Verify the valid user is able to login into the application", groups = {"E2E", "Sanity"},
             dataProviderClass = com.ui.dataproviders.LoginDataProvider.class,
-            dataProvider = "LoginTestExcelDataProvider", retryAnalyzer = com.ui.listeners.MyRetryAnalyzer.class)
-    public void loginExceltest(user user) {
+            dataProvider = "LoginTestCSVDataProvider")
+    public void loginCSVtest(user user) {
         assertEquals(loginPage.doLoginWith(user.getEmailAddress(), user.getPassword()).getUserName(), "Tanmay QA");
-
     }
+
+//    @Test(description = "Verify the valid user is able to login into the application", groups = {"E2E", "Sanity"},
+//            dataProviderClass = com.ui.dataproviders.LoginDataProvider.class,
+//            dataProvider = "LoginTestExcelDataProvider", retryAnalyzer = com.ui.listeners.MyRetryAnalyzer.class)
+//    public void loginExceltest(user user) {
+//        assertEquals(loginPage.doLoginWith(user.getEmailAddress(), user.getPassword()).getUserName(), "Tanmay QA");
+//
+//    }
 
 }

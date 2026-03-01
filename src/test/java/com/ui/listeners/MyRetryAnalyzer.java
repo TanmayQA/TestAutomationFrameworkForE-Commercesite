@@ -2,7 +2,6 @@ package com.ui.listeners;
 
 import com.constants.Env;
 import com.utillity.JsonUtillity;
-import com.utillity.PropertiesUtill;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 

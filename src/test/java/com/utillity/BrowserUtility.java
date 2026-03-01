@@ -9,16 +9,21 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
+import java.util.List;
 
 public abstract class BrowserUtility {
 
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
+    protected WebDriverWait wait;
 
     public WebDriver getDriver() {
         return driver.get();
@@ -27,6 +32,7 @@ public abstract class BrowserUtility {
     public BrowserUtility(WebDriver driver) {
         super();
         this.driver.set(driver);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public BrowserUtility(String browserName) {
@@ -94,9 +100,10 @@ public abstract class BrowserUtility {
     }
 
     public void clickOn(By locator) {
-        WebElement element = driver.get().findElement(locator);
-        element.click();
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
     }
+
 
     public void entertext(By locator, String textToEnter) {
         WebElement element = driver.get().findElement(locator);
@@ -123,5 +130,80 @@ public abstract class BrowserUtility {
         }
         return path;
     }
+
+    public void waitForVisible(By locator) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public void killAds() {
+        try {
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(8));
+
+            for (int i = 0; i < 3; i++) {
+                getDriver().switchTo().defaultContent();
+
+                List<WebElement> iframes =
+                        getDriver().findElements(By.cssSelector("iframe[src*='google'], iframe[id*='google']"));
+
+                for (WebElement frame : iframes) {
+                    try {
+                        getDriver().switchTo().frame(frame);
+
+                        List<WebElement> close =
+                                getDriver().findElements(By.cssSelector("button, div[role='button'], span"));
+
+                        for (WebElement c : close) {
+                            if (c.isDisplayed()) {
+                                c.click();
+                                break;
+                            }
+                        }
+
+                        getDriver().switchTo().defaultContent();
+                    } catch (Exception ignored) {
+                        getDriver().switchTo().defaultContent();
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            getDriver().switchTo().defaultContent();
+        }
+    }
+
+    public void waitForElementToBeClickable(By locator) {
+        new WebDriverWait(getDriver(), Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(locator));
+    }
+    public List<WebElement> getElements(By locator) {
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return getDriver().findElements(locator);
+    }
+
+    public void jsClick(By locator) {
+
+        WebElement element =
+                new WebDriverWait(getDriver(), Duration.ofSeconds(10))
+                        .until(ExpectedConditions.presenceOfElementLocated(locator));
+
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        js.executeScript("arguments[0].click();", element);
+    }
+
+    public boolean isElementDisplayed(By locator) {
+        try {
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+            WebElement element = wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(locator)
+            );
+            return element.isDisplayed();
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+
+
 
 }
